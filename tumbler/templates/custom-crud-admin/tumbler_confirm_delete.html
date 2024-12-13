@@ -1,0 +1,6 @@
+<p>Apakah Anda yakin ingin menghapus "{{ tumbler.name }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Hapus</button>
+    <a href="{% url 'tumbler_list' %}" class="btn btn-secondary">Batal</a>
+</form>

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Galeri Tumbler{% endblock %}</title>
+
+    <!-- CSS Utama -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+    <!-- CSS Tambahan (jika ada) -->
+    {% block extra_css %}
+    {% endblock extra_css %}
+</head>
+
+<body>
+    <!-- Header/Navigasi -->
+    <header class="mb-4">
+        <nav class="navbar navbar-expand-lg" style="background: linear-gradient(to right, #d0e6ff, #fdd6e4); background: linear-gradient(to right, #a6b8e5, #eeb6dd);">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <h1>
+                        Pimbler
+                    </h1>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'beranda' %}active{% endif %}" href="{% url 'beranda' %}">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'pencarian' %}active{% endif %}" href="{% url 'pencarian' %}">Pencarian</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'kategori' %}active{% endif %}" href="{% url 'kategori' %}">Kategori</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'rekomendasi' %}active{% endif %}" href="{% url 'rekomendasi' %}">Rekomendasi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'promo' %}active{% endif %}" href="{% url 'promo' %}">Promo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.resolver_match.url_name == 'keunggulan' %}active{% endif %}" href="{% url 'keunggulan' %}">Keunggulan</a>
+                        </li>
+                        <div class="header d-flex justify-content-between align-items-center mb-4">
+                        <div class="icons">
+                            <div class="icons">
+                                <a href="{% url 'login' %}" class="text-dark"><i class="fas fa-user" style="margin-left: 20px;"></i></a>
+                                </i>
+                            </div>
+                        </div>                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="container">
+        {% block content %}
+        <!-- Konten halaman spesifik akan di-render di sini -->
+        {% endblock content %}
+    </main>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qWfiB28wJ8IcMqKqYr7LUEK21WBZxbq0F1iAqO+KOZNlIuHOU/1ieT79MXs6Cfs3"
+        crossorigin="anonymous"></script>
+    <!-- JavaScript Tambahan (jika ada) -->
+    {% block extra_js %}
+    {% endblock extra_js %}
+</body>
+
+</html>

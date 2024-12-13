@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Promo - Pimbler{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h2 class="my-4">Promo Terbatas</h2>
+    
+    <div class="row justify-content-center">
+        <!-- Tambahkan produk promo di sini -->
+        {% for promo in promos %}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card">
+                <img src="{{ promo.image_url }}" class="card-img-top" alt="{{ promo.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ promo.name }}</h5>
+                    <p class="card-text">{{ promo.description }}</p>
+                    <span class="badge bg-warning text-dark">{{ promo.discount_percentage }}% OFF</span>
+                    <a href="{% url 'promo_detail' promo.id %}" class="btn btn-primary mt-3">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Promo tidak tersedia saat ini.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Rekomendasi - Pimbler{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h2 class="my-4">Rekomendasi</h2>
+    
+    <div class="row justify-content-center">
+        <!-- Tambahkan produk rekomendasi di sini -->
+        {% for product in recommended_products %}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="product-card">
+                <img src="{{ product.image_url }}" class="img-fluid" alt="{{ product.name }}">
+                <div class="product-details">
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="product-size">{{ product.size }}</p>
+                    <p class="product-price">
+                        <span>{{ product.price|floatformat:2 }} IDR</span>
+                    </p>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Tidak ada rekomendasi produk saat ini.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

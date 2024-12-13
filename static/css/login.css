@@ -1,0 +1,45 @@
+body {
+    background: linear-gradient(to right, #a6b8e5, #eeb6dd);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: linear-gradient(to right, #a6b8e5, #eeb6dd);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.btn-login {
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.forgot-password {
+    display: block;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
