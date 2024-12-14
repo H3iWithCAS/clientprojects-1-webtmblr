@@ -20,6 +20,7 @@
             <h3>Ukuran: {{ tumbler.size }}</h3>
             <p><strong>Deskripsi:</strong></p>
             <p>{{ tumbler.description }}</p>
+            <p>Harga: {{ tumbler.price|floatformat:2 }} IDR</p>
             <a href="{% url 'tumbler_list' %}" class="btn btn-primary">Kembali ke Daftar Tumbler</a>
             <a href="{% url 'tumbler_edit' tumbler.pk %}" class="btn btn-warning">Edit Tumbler</a>
             <a href="{% url 'tumbler_delete' tumbler.pk %}" class="btn btn-danger">Hapus Tumbler</a>

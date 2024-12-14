@@ -1,12 +1,10 @@
 {% for tumbler in tumblers %}
 <div class="product-card">
-    {% if tumbler.image %}
-        <img src="{{ tumbler.image.url }}" alt="{{ tumbler.name }}">
-    {% else %}
-        <img src="/path/to/default/image.jpg" alt="default image">
-    {% endif %}
+    <img src="{{ tumbler.image.url }}" alt="{{ tumbler.name }}">
     <div class="product-title">{{ tumbler.name }}</div>
     <div class="product-size">{{ tumbler.size }}</div>
+    <div class="product-price">Harga: {{ tumbler.price|floatformat:2 }} IDR</div>
     <a href="{% url 'tumbler_detail' tumbler.pk %}">Detail</a>
 </div>
 {% endfor %}
+<a href="{% url 'tumbler_create' %}" class="btn btn-primary">Tambah Tumbler</a>
