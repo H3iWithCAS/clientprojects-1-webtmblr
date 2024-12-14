@@ -11,7 +11,7 @@
         {% for product in recommended_products %}
         <div class="col-md-4 col-lg-3 mb-4">
             <div class="product-card">
-                <img src="{{ product.image_url }}" class="img-fluid" alt="{{ product.name }}">
+                <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
                 <div class="product-details">
                     <h5 class="product-title">{{ product.name }}</h5>
                     <p class="product-size">{{ product.size }}</p>

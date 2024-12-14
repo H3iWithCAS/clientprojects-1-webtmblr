@@ -146,3 +146,6 @@ STATICFILES_DIRS = [
 
 # Pada produksi, file statis akan disalin ke direktori ini saat menjalankan collectstatic
 STATIC_ROOT = BASE_DIR / "staticfiles"  # Tempat untuk menyimpan file statis setelah pengumpulan
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # Lokasi penyimpanan file media di sistem file

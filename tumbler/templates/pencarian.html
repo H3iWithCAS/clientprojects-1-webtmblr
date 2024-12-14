@@ -4,27 +4,36 @@
 
 {% block content %}
 <div class="search-container my-5">
-    <div class="search-box d-flex justify-content-center align-items-center">
-        <input placeholder="Cari produk..." type="text" class="form-control me-2" />
-        <i class="fas fa-search"></i>
-    </div>
+    <form method="get" action="{% url 'pencarian' %}">
+        <div class="search-box d-flex justify-content-center align-items-center">
+            <input 
+                placeholder="Cari produk..." 
+                type="text" 
+                class="form-control me-2" 
+                name="q" 
+                value="{{ query }}"
+            />
+            <button type="submit" class="btn btn-dark">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </form>
 </div>
-    <div class="row justify-content-center">
-        <!-- Produk pencarian akan ditampilkan di sini -->
-        {% for product in products %}
-        <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card">
-                <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Lihat Detail</a>
-                </div>
+
+<div class="row justify-content-center">
+    {% for product in products %}
+    <div class="col-md-4 col-lg-3 mb-4">
+        <div class="card">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description }}</p>
+                <a href="{% url 'tumbler_detail' product.pk %}" class="btn btn-dark">Lihat Detail</a>
             </div>
         </div>
-        {% empty %}
-        <p>Produk tidak ditemukan.</p>
-        {% endfor %}
     </div>
+    {% empty %}
+    <p>Produk tidak ditemukan.</p>
+    {% endfor %}
 </div>
 {% endblock %}

@@ -6,11 +6,22 @@ from django.contrib.auth.views import LoginView
 
 # View untuk halaman beranda
 def beranda(request):
-    return render(request, 'beranda.html')
+    query = request.GET.get('q', '')  # Mengambil parameter pencarian dari URL
+    if query:
+        tumblers = Tumbler.objects.filter(name__icontains=query)  # Filter tumbler berdasarkan nama
+    else:
+        tumblers = Tumbler.objects.all()  # Jika tidak ada pencarian, tampilkan semua tumbler
+    
+    return render(request, 'beranda.html', {'tumbler': tumblers, 'query': query})
 
-# View untuk halaman pencarian
 def pencarian(request):
-    return render(request, 'pencarian.html')
+    query = request.GET.get('q', '')  # Ambil query dari URL
+    if query:
+        products = Tumbler.objects.filter(name__icontains=query)  # Filter berdasarkan nama produk
+    else:
+        products = Tumbler.objects.all()  # Jika tidak ada pencarian, tampilkan semua produk
+    
+    return render(request, 'pencarian.html', {'products': products, 'query': query})
 
 # View untuk halaman kategori
 def kategori(request):
@@ -18,11 +29,14 @@ def kategori(request):
 
 # View untuk halaman rekomendasi
 def rekomendasi(request):
-    return render(request, 'rekomendasi.html')
+    # Ambil produk yang sudah disesuaikan dengan kriteria rekomendasi
+    recommended_products = Tumbler.objects.filter(is_recommended=True)  # Contoh filter produk yang direkomendasikan
+    return render(request, 'rekomendasi.html', {'recommended_products': recommended_products})
 
 # View untuk halaman promo
 def promo(request):
-    return render(request, 'promo.html')
+    promos = Tumbler.objects.filter(is_promo=True)  # Filter untuk produk yang memiliki promo
+    return render(request, 'promo.html', {'promos': promos})
 
 # View untuk halaman keunggulan
 def keunggulan(request):
@@ -30,11 +44,11 @@ def keunggulan(request):
 
 def tumbler_list(request):
     tumblers = Tumbler.objects.all()
-    return render(request, 'tumbler/tumbler_list.html', {'tumblers': tumblers})
+    return render(request, 'crud/tumbler_list.html', {'tumblers': tumblers})
 
 def tumbler_detail(request, pk):
     tumbler = get_object_or_404(Tumbler, pk=pk)
-    return render(request, 'tumbler/tumbler_detail.html', {'tumbler': tumbler})
+    return render(request, 'crud/tumbler_detail.html', {'tumbler': tumbler})
 
 def tumbler_create(request):
     if request.method == 'POST':
@@ -44,7 +58,7 @@ def tumbler_create(request):
             return redirect('tumbler_list')
     else:
         form = TumblerForm()
-    return render(request, 'tumbler/tumbler_form.html', {'form': form})
+    return render(request, 'crud/tumbler_form.html', {'form': form})
 
 def tumbler_edit(request, pk):
     tumbler = get_object_or_404(Tumbler, pk=pk)
@@ -55,14 +69,14 @@ def tumbler_edit(request, pk):
             return redirect('tumbler_list')
     else:
         form = TumblerForm(instance=tumbler)
-    return render(request, 'tumbler/tumbler_form.html', {'form': form})
+    return render(request, 'crud/tumbler_form.html', {'form': form})
 
 def tumbler_delete(request, pk):
     tumbler = get_object_or_404(Tumbler, pk=pk)
     if request.method == 'POST':
         tumbler.delete()
         return redirect('tumbler_list')
-    return render(request, 'tumbler/tumbler_confirm_delete.html', {'tumbler': tumbler})
+    return render(request, 'crud/tumbler_confirm_delete.html', {'tumbler': tumbler})
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'  # Nama template login kustom
