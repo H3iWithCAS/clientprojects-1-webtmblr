@@ -3,6 +3,7 @@ from .models import Tumbler
 from .forms import TumblerForm
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView
+from .models import Promo  
 
 # View untuk halaman beranda
 def beranda(request):
@@ -33,10 +34,26 @@ def rekomendasi(request):
     recommended_products = Tumbler.objects.filter(is_recommended=True)  # Contoh filter produk yang direkomendasikan
     return render(request, 'rekomendasi.html', {'recommended_products': recommended_products})
 
+def product_detail(request, id):
+    product = get_object_or_404(Tumbler, id=id)  # Ambil objek produk berdasarkan ID
+    return render(request, 'product_detail.html', {'product': product})
+
+def recommended_products(request):
+    recommended_products = Tumbler.objects.all()  # Ambil semua produk sebagai contoh
+    return render(request, 'recommended_products.html', {'recommended_products': recommended_products})
+
 # View untuk halaman promo
 def promo(request):
     promos = Tumbler.objects.filter(is_promo=True)  # Filter untuk produk yang memiliki promo
     return render(request, 'promo.html', {'promos': promos})
+
+def promo_detail(request, id):
+    promo = get_object_or_404(Promo, id=id)  # Ambil promo berdasarkan ID
+    return render(request, 'promo_detail.html', {'promo': promo})
+
+def promo_list(request):
+    promos = Promo.objects.all()  # Ambil semua promo dari database
+    return render(request, 'promo_list.html', {'promos': promos})
 
 # View untuk halaman keunggulan
 def keunggulan(request):

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Detail Produk{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>{{ product.name }}</h2>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid my-4">
+    <p>{{ product.description }}</p>
+    <p>Ukuran: {{ product.size }}</p>
+    <p>Harga: {{ product.price|floatformat:2 }} IDR</p>
+    <a href="{% url 'beranda' %}" class="btn btn-dark">Kembali ke Beranda</a>
+</div>
+{% endblock %}

@@ -35,6 +35,10 @@
             <div class="card-body">
                 <h5 class="card-title">{{ x.name }}</h5>
                 <p class="card-text">{{ x.description }}</p>
+                <p class="product-size">{{ x.size }}</p>
+                <p class="product-price">
+                    <span>{{ x.price }} IDR</span>
+                </p>
                 <a href="{% url 'tumbler_detail' x.pk %}" class="btn btn-dark">Lihat Detail</a>
             </div>
         </div>

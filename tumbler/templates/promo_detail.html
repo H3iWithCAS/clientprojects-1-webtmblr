@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ promo.name }} - Promo{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+    <h2>{{ promo.name }}</h2>
+    <img src="{{ promo.image.url }}" alt="{{ promo.name }}" class="img-fluid my-4">
+    <p>{{ promo.description }}</p>
+    <span class="badge bg-warning text-dark">{{ promo.discount_percentage }}% OFF</span>
+</div>
+{% endblock %}

@@ -10,15 +10,15 @@
         <!-- Tambahkan produk rekomendasi di sini -->
         {% for product in recommended_products %}
         <div class="col-md-4 col-lg-3 mb-4">
-            <div class="product-card">
-                <img src="{{ product.image.url }}" class="img-fluid" alt="{{ product.name }}">
-                <div class="product-details">
-                    <h5 class="product-title">{{ product.name }}</h5>
-                    <p class="product-size">{{ product.size }}</p>
+            <div class="card">
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-title">{{ product.size }}</p>
                     <p class="product-price">
-                        <span>{{ product.price|floatformat:2 }} IDR</span>
-                    </p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Lihat Detail</a>
+                        <span>{{ product.price }} IDR</span>
+                    <p class="card-text">{{ product.description }}</p>
+                    <a href="{% url 'tumbler_detail' product.pk %}" class="btn btn-dark">Lihat Detail</a>
                 </div>
             </div>
         </div>
