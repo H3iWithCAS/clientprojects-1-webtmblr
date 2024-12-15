@@ -15,6 +15,7 @@ def beranda(request):
     
     return render(request, 'beranda.html', {'tumbler': tumblers, 'query': query})
 
+# View untuk halaman pencarian
 def pencarian(request):
     query = request.GET.get('q', '')  # Ambil query dari URL
     if query:
@@ -59,41 +60,15 @@ def promo_list(request):
 def keunggulan(request):
     return render(request, 'keunggulan.html')
 
+# View untuk halaman tumbler
 def tumbler_list(request):
     tumblers = Tumbler.objects.all()
-    return render(request, 'crud/tumbler_list.html', {'tumblers': tumblers})
+    return render(request, 'tumbler_list.html', {'tumblers': tumblers})
 
 def tumbler_detail(request, pk):
     tumbler = get_object_or_404(Tumbler, pk=pk)
-    return render(request, 'crud/tumbler_detail.html', {'tumbler': tumbler})
+    return render(request, 'tumbler_detail.html', {'tumbler': tumbler})
 
-def tumbler_create(request):
-    if request.method == 'POST':
-        form = TumblerForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('tumbler_list')
-    else:
-        form = TumblerForm()
-    return render(request, 'crud/tumbler_form.html', {'form': form})
-
-def tumbler_edit(request, pk):
-    tumbler = get_object_or_404(Tumbler, pk=pk)
-    if request.method == 'POST':
-        form = TumblerForm(request.POST, request.FILES, instance=tumbler)
-        if form.is_valid():
-            form.save()
-            return redirect('tumbler_list')
-    else:
-        form = TumblerForm(instance=tumbler)
-    return render(request, 'crud/tumbler_form.html', {'form': form})
-
-def tumbler_delete(request, pk):
-    tumbler = get_object_or_404(Tumbler, pk=pk)
-    if request.method == 'POST':
-        tumbler.delete()
-        return redirect('tumbler_list')
-    return render(request, 'crud/tumbler_confirm_delete.html', {'tumbler': tumbler})
-
+# View untuk halaman login
 class CustomLoginView(LoginView):
-    template_name = 'login.html'  # Nama template login kustom
+    template_name = 'login.html'
