@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import CustomLoginView
 
 urlpatterns = [
     path('', views.beranda, name='beranda'),  # Beranda (halaman utama)
@@ -13,5 +12,4 @@ urlpatterns = [
     path('promo/', views.promo, name='promo'),  # Halaman promo
     path('promo/<int:id>/', views.promo_detail, name='promo_detail'), # URL untuk detail promo
     path('keunggulan/', views.keunggulan, name='keunggulan'),  # Halaman keunggulan  
-    path('login/', CustomLoginView.as_view(), name='login'), # URL untuk login
 ]

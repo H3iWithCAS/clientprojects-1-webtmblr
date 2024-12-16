@@ -7,7 +7,7 @@ class Tumbler(models.Model):
     description = models.TextField(blank=True)
     is_promo = models.BooleanField(default=False)  # Field promo
     is_recommended = models.BooleanField(default=False)  # Field untuk rekomendasi produk
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Tambahkan field harga
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00) 
 
     def __str__(self):
         return self.name
@@ -20,4 +20,4 @@ class Promo(models.Model):
     description = models.TextField()
     image = models.ImageField(upload_to='static/images/') 
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Tambahkan field harga
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00) 

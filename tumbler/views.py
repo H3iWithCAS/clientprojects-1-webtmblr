@@ -1,8 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from .models import Tumbler
-from .forms import TumblerForm
 from django.shortcuts import render
-from django.contrib.auth.views import LoginView
 from .models import Promo  
 
 # View untuk halaman beranda
@@ -68,7 +66,3 @@ def tumbler_list(request):
 def tumbler_detail(request, pk):
     tumbler = get_object_or_404(Tumbler, pk=pk)
     return render(request, 'tumbler_detail.html', {'tumbler': tumbler})
-
-# View untuk halaman login
-class CustomLoginView(LoginView):
-    template_name = 'login.html'

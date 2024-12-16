@@ -5,4 +5,3 @@ from .models import Tumbler
 class TumblerAdmin(admin.ModelAdmin):
     list_display = ('name', 'size', 'price')  # Tambahkan 'price' ke daftar kolom
     list_filter = ('price',)
-
